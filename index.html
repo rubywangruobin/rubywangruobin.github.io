@@ -86,13 +86,13 @@
 <nav class="navbar navbar-expand-sm navbar-transparent sticky-top">
   <ul class="navbar-nav ml-auto">
     <li class="nav-item">
-      <a class="nav-link" href="#">About</a>
+      <a class="nav-link" href="index.html">Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Work</a>
+      <a class="nav-link" href="#work_part">Work</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Contact</a>
+      <a class="nav-link" href="#footer">Contact</a>
     </li>
   </ul>
 </nav>
@@ -100,7 +100,7 @@
 	<img src="background.png" id="bg" alt="">
 </div>
 
-<div class="container" style="margin-top: 2em;">
+<div class="container" style="margin-top: 2em;" id="work_part">
 	<div class="row justify-content-md-center">
 		<div class="content col-md-3" id="proj1">
 			<a href="collaborative_analyzer.html"><img src="symbol1.png" id="icon" alt=""></a>
@@ -136,7 +136,7 @@
 	</div>
 </div>
 
-<nav class="navbar navbar-expand-sm justify-content-center" style="margin-top: 2em;">
+<nav class="navbar navbar-expand-sm justify-content-center" style="margin-top: 2em;" id="footer">
   <ul class="navbar-nav">
   	<li style="margin:auto; padding-left:10px; padding-right:10px;">
   		Interested in My Work? Feel Free to Contact Me!
@@ -162,7 +162,6 @@
 $(document).ready(function() {
         // Transition effect for navbar 
         $(window).scroll(function() {
-          var introlen = document.getElementById("in").length;
           if($(this).scrollTop() > 500) { 
               $('.navbar').addClass('solid');
           } else {
