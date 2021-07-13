@@ -1,82 +1,82 @@
 [
     {
-      "Test Scores": 61,
-      "Hours of Study": 3
+      "Scores": 61,
+      "Hours": 3
     },
     {
-        "Test Scores": 52,
-        "Hours of Study": 4
+        "Scores": 52,
+        "Hours": 4
     },
     {
-        "Test Scores": 63,
-        "Hours of Study": 7
+        "Scores": 63,
+        "Hours": 7
     },
     {
-        "Test Scores": 59,
-        "Hours of Study": 8
+        "Scores": 59,
+        "Hours": 8
     },
     {
-        "Test Scores": 55,
-        "Hours of Study": 9
+        "Scores": 55,
+        "Hours": 9
     },
     {
-        "Test Scores": 61,
-        "Hours of Study": 9
+        "Scores": 61,
+        "Hours": 9
     },
     {
-        "Test Scores": 60,
-        "Hours of Study": 11
+        "Scores": 60,
+        "Hours": 11
     },
     {
-        "Test Scores": 73,
-        "Hours of Study": 11
+        "Scores": 73,
+        "Hours": 11
     },
     {
-        "Test Scores": 75,
-        "Hours of Study": 13
+        "Scores": 75,
+        "Hours": 13
     },
     {
-        "Test Scores": 77,
-        "Hours of Study": 13
+        "Scores": 77,
+        "Hours": 13
     },
     {
-        "Test Scores": 85,
-        "Hours of Study": 13
+        "Scores": 85,
+        "Hours": 13
     },
     {
-        "Test Scores": 79,
-        "Hours of Study": 16
+        "Scores": 79,
+        "Hours": 16
     },
     {
-        "Test Scores": 81,
-        "Hours of Study": 17
+        "Scores": 81,
+        "Hours": 17
     },
     {
-        "Test Scores": 84,
-        "Hours of Study": 17
+        "Scores": 84,
+        "Hours": 17
     },
     {
-        "Test Scores": 76,
-        "Hours of Study": 19
+        "Scores": 76,
+        "Hours": 19
     },
     {
-        "Test Scores": 87,
-        "Hours of Study": 21
+        "Scores": 87,
+        "Hours": 21
     },
     {
-        "Test Scores": 88,
-        "Hours of Study": 23
+        "Scores": 88,
+        "Hours": 23
     },
     {
-        "Test Scores": 94,
-        "Hours of Study": 24
+        "Scores": 94,
+        "Hours": 24
     },
     {
-        "Test Scores": 89,
-        "Hours of Study": 27
+        "Scores": 89,
+        "Hours": 27
     },
     {
-        "Test Scores": 89,
-        "Hours of Study": 30
+        "Scores": 89,
+        "Hours": 30
     }
   ]
