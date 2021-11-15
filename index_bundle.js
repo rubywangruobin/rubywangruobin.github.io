@@ -20,33 +20,23 @@ return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/addDOMContent.js":
-/*!******************************!*\
-  !*** ./src/addDOMContent.js ***!
-  \******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction addDOMContent(content) {\n  var node = document.createElement(\"h1\");\n  node.innerText = content;\n  document.body.appendChild(node);\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (addDOMContent);\n\n//# sourceURL=webpack://$/./src/addDOMContent.js?");
-
-/***/ }),
-
-/***/ "./src/capital.js":
-/*!************************!*\
-  !*** ./src/capital.js ***!
-  \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction capital(string) {\n  var capitalizedString = string.substring(0, 1).toUpperCase() + string.substring(1);\n  return capitalizedString;\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (capital);\n\n//# sourceURL=webpack://$/./src/capital.js?");
-
-/***/ }),
-
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"capital\": () => (/* reexport safe */ _capital__WEBPACK_IMPORTED_MODULE_0__[\"default\"]),\n/* harmony export */   \"addDOMContent\": () => (/* reexport safe */ _addDOMContent__WEBPACK_IMPORTED_MODULE_1__[\"default\"])\n/* harmony export */ });\n/* harmony import */ var _capital__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./capital */ \"./src/capital.js\");\n/* harmony import */ var _addDOMContent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./addDOMContent */ \"./src/addDOMContent.js\");\n\n\n\n\n//# sourceURL=webpack://$/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"insert\": () => (/* reexport safe */ _insert__WEBPACK_IMPORTED_MODULE_0__[\"default\"])\n/* harmony export */ });\n/* harmony import */ var _insert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./insert */ \"./src/insert.js\");\n\n(0,_insert__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n\n\n//# sourceURL=webpack://$/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/insert.js":
+/*!***********************!*\
+  !*** ./src/insert.js ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction insert() {\n  var svg = document.getElementsByTagName(\"svg\")[0];\n  console.log(svg); // var titleNode = document.createElement(\"title\");\n  // titleNode.innerText = \"abvcd\";\n\n  svg.setAttribute(\"aria-label\", \"test\");\n  svg.setAttribute(\"role\", \"img\"); // svg.insertBefore(titleNode, svg.firstChild);\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (insert);\n\n//# sourceURL=webpack://$/./src/insert.js?");
 
 /***/ })
 
