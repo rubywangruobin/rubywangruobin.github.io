@@ -41,7 +41,10 @@ path {
 <div>
     <h2 style="text-align:left;">Text</h2>
     <h4 style="text-align:left; margin-bottom:20px;">Highlight as little text as possible that corresponds to the elements in the chart. Click on the Reselect button below to remove the highlights.</h4>
-    <div style="text-align: center; width:80%; margin-left:10%; border:1px solid black;"><div id="select--highlight--active" class="select--highlight--active" style="text-align:left;">The results suggest that the extent of consensus has risen significantly. Economists were in strong agreement on about a third of the propositions in the latest wave, compared with around 15% in 2011 and less than 10% in 1990. Respondents were more united on their diagnosis of economic problems. And, strikingly, more of them were convinced of the need for muscular policy. </div><button id='redButton' type='button' onclick='cancel123()' style="visibility:hidden;">X Reselect</button></div>
+    <div style="text-align: center; width:80%; margin-left:10%; border:1px solid black;">
+        <input type="button" onclick="highlight('#ff0')" value="highlight">
+        <input type="button" onclick="unhighlight(document.body, 'ffff00')" value="unhighlight">
+        <div style="text-align:left;">The results suggest that the extent of consensus has risen significantly. Economists were in strong agreement on about a third of the propositions in the latest wave, compared with around 15% in 2011 and less than 10% in 1990. Respondents were more united on their diagnosis of economic problems. And, strikingly, more of them were convinced of the need for muscular policy. </div></div>
 </div>
 
 <div>
@@ -89,25 +92,150 @@ function cancel123() {
 
 }
 
-thisRespondHightlightText(".select--highlight--active");
-function thisRespondHightlightText(thisDiv){
-    $(thisDiv).on("mouseup", function () {
-        var selection;
-        if (window.getSelection) {
-            selection = window.getSelection();
-        } else if (document.selection) {
-            selection = document.selection.createRange();
-        }
-        var index =  Math.min(selection.focusOffset, selection.anchorOffset);
-        var endIndex = Math.max(selection.focusOffset, selection.anchorOffset);
-        var text = $(this).text().substring(0, index) + "<span class='red'>" + $(this).text().substring(index, endIndex) + "</span>" + $(this).text().substring(endIndex);
-        $(this).html(text);
-        document.getElementById('redButton').style.visibility='visible';
-        $('.select--highlight--active').addClass('testsetting');
-        $('.select--highlight--active').addClass('unselectText');
 
-    });
+/*
+    highlight text js
+    http://jsfiddle.net/timdown/Bvd9d/
+*/
+
+function componentFromStr(numStr, percent) {
+    var num = Math.max(0, parseInt(numStr, 10));
+    return percent ? Math.floor(255 * Math.min(100, num) / 100) : Math.min(255, num);
 }
+
+var rgbRegex = /^rgb\(\s*(-?\d+)(%?)\s*,\s*(-?\d+)(%?)\s*,\s*(-?\d+)(%?)\s*\)$/,
+    hexRegex = /^#?([a-f\d]{6})$/,
+    shortHexRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/;
+
+function Colour(r, g, b) {
+    // Make a new Colour object even when Colour is not called with the new operator
+    if (!(this instanceof Colour)) {
+        return new Colour(r, g, b);
+    }
+
+    if (typeof g == "undefined") {
+        // Parse the colour string
+        var colStr = r.toLowerCase(), result;
+
+        // Check for hex value first, the short hex value, then rgb value
+        if ( (result = hexRegex.exec(colStr)) ) {
+            var hexNum = parseInt(result[1], 16);
+            r = hexNum >> 16;
+            g = (hexNum & 0xff00) >> 8;
+            b = hexNum & 0xff;
+        } else if ( (result = shortHexRegex.exec(colStr)) ) {
+            r = parseInt(result[1] + result[1], 16);
+            g = parseInt(result[2] + result[2], 16);
+            b = parseInt(result[3] + result[3], 16);
+        } else if ( (result = rgbRegex.exec(colStr)) ) {
+            r = componentFromStr(result[1], result[2]);
+            g = componentFromStr(result[3], result[4]);
+            b = componentFromStr(result[5], result[6]);
+        } else {
+            throw new Error("Colour: Unable to parse colour string '" + colStr + "'");
+        }
+    }
+
+    this.r = r;
+    this.g = g;
+    this.b = b;
+}
+
+Colour.prototype = {
+    equals: function(colour) {
+        return this.r == colour.r && this.g == colour.g && this.b == colour.b;
+    }
+};
+
+function makeEditableAndHighlight(colour) {
+    var range, sel = window.getSelection();
+    if (sel.rangeCount && sel.getRangeAt) {
+        range = sel.getRangeAt(0);
+    }
+    document.designMode = "on";
+    if (range) {
+        sel.removeAllRanges();
+        sel.addRange(range);
+    }
+    // Use HiliteColor since some browsers apply BackColor to the whole block
+    if (!document.execCommand("HiliteColor", false, colour)) {
+        document.execCommand("BackColor", false, colour);
+    }
+    document.designMode = "off";
+}
+
+function highlight(colour) {
+    var range, sel;
+    if (window.getSelection) {
+        // IE9 and non-IE
+        try {
+            if (!document.execCommand("BackColor", false, colour)) {
+                makeEditableAndHighlight(colour);
+            }
+        } catch (ex) {
+            makeEditableAndHighlight(colour)
+        }
+    } else if (document.selection && document.selection.createRange) {
+        // IE <= 8 case
+        range = document.selection.createRange();
+        range.execCommand("BackColor", false, colour);
+    }
+}
+
+var getComputedStyleProperty;
+
+if (typeof window.getComputedStyle != "undefined") {
+    getComputedStyleProperty = function(el, propName) {
+        return window.getComputedStyle(el, null)[propName];
+    };
+} else if (typeof document.documentElement.currentStyle != "undefined") {
+    getComputedStyleProperty = function(el, propName) {
+        return el.currentStyle[propName];
+    };
+}
+
+function unhighlight(node, colour) {
+    if (!(colour instanceof Colour)) {
+        colour = new Colour(colour);
+    }
+
+    if (node.nodeType == 1) {
+        var bg = node.style.backgroundColor;
+        if (bg && colour.equals(new Colour(bg))) {
+            node.style.backgroundColor = "";
+        }
+    }
+    var child = node.firstChild;
+    while (child) {
+        unhighlight(child, colour);
+        child = child.nextSibling;
+    }
+}
+
+// thisRespondHightlightText(".select--highlight--active");
+// function thisRespondHightlightText(thisDiv){
+//     $(thisDiv).on("mouseup", function () {
+//         var selection;
+//         if (window.getSelection) {
+//             selection = window.getSelection();
+//         } else if (document.selection) {
+//             selection = document.selection.createRange();
+//         }
+//         var index =  Math.min(selection.focusOffset, selection.anchorOffset);
+//         var endIndex = Math.max(selection.focusOffset, selection.anchorOffset);
+//         var text = $(this).text().substring(0, index) + "<span class='red'>" + $(this).text().substring(index, endIndex) + "<button class='test'>X</button>" + "</span>" + $(this).text().substring(endIndex);
+
+//         $(this).html(text);
+//         document.getElementById('redButton').style.visibility='visible';
+//         $('.red').addClass('testsetting');
+//         $('.red').addClass('unselectText');
+
+//     });
+// }
+
+/*
+    End of highlight text js
+*/
 function addRow(){
     if($(".red").text().length == 0){
         alert("Please select some text");
@@ -186,8 +314,19 @@ function download(filename, text) {
   document.body.removeChild(element);
 }
 
+
+
+/*
+    Data
+*/
+
 var data = [
   [18, 185, "9%"], [75, 162, "14%"], [136, 162, "14%"], [193, 71, "32%"]]
+
+
+/*
+    Some d3 properties
+*/
 
 var svg = d3.select("svg")
             .append("svg")
