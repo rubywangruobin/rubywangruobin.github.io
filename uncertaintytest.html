@@ -234,9 +234,11 @@ function unhighlight(node, colour) {
 // }
 
 /*
-    End of highlight text js
+    add a new row in the table
 */
 function addRow(){
+
+    //check completeness before add reference
     if($(".red").text().length == 0){
         alert("Please select some text");
         return;
@@ -245,6 +247,7 @@ function addRow(){
         alert("Please select a data point");
         return;
     }
+    //create table
     var table = document.getElementById("myTable");
     var row = table.insertRow();
     var cell1 = row.insertCell(0);
@@ -255,6 +258,7 @@ function addRow(){
     cell1.innerHTML = $(".red").text();
     cell2.innerHTML = currentVal;
 
+    //dropdown menu in cell3
     var values = ["value", "proportion", "difference", "distribution", "trend", "rank", "aggregation", "association", "extreme", "categorization", "outlier"];
     var select =  document.createElement("select");
     select.name = "category";
@@ -269,6 +273,7 @@ function addRow(){
     }
     cell3.appendChild(select);
 
+    //remove button cell4
     var btn = document.createElement("button");
     btn.innerHTML = "X";
     btn.onclick = function(){
@@ -281,6 +286,12 @@ function addRow(){
     cancel123();
 
 }
+
+
+
+/*
+    remove a row in the table
+*/
 function removeButton(row){
     var index = -1;
     var rows = document.getElementById("myTable").rows;
@@ -295,6 +306,11 @@ function removeButton(row){
     }
     
 }
+
+
+/*
+    generate a txt
+*/
 
 function sendData(){
 
@@ -325,7 +341,7 @@ var data = [
 
 
 /*
-    Some d3 properties
+    Some d3 manipulations
 */
 
 var svg = d3.select("svg")
@@ -340,13 +356,26 @@ svg.selectAll("circle")
    .attr("cx", function(d) {return d[0]})
    .attr("cy", function(d) {return d[1]})
    .attr("value", function(d){return d[2]})
+   .style("fill", "black")
    .attr("r", 4)
    .on('click', function(e, d) {
-    currentVal = e[2];
-    d3.selectAll("circle")
-      .style("fill", "black");
-    d3.select(this)
-      .style('fill', 'red');
+        currentVal = e[2];
+        if(d3.select(this).style("fill") == d3.rgb(0,0,0)){
+            d3.select(this).style("fill", "red");
+        }else if(d3.select(this).style("fill") == d3.rgb(255,0,0)){
+            d3.select(this).style("fill", "black");
+        }
+        // console.log(d3.select(this).style("fill") == d3.rgb(0,0,0));
+    //     d3.select(this)
+    //         .style('fill', function(d){
+    //             if(this.style('fill') == "black"){
+    //                 return "red";
+    //             }else if (this.style('fill') == "red"){
+    //                 return "black";
+    //             }
+    //             console.log(this);
+    //   });
+
   });
 
 </script>
