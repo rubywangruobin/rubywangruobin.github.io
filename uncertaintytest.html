@@ -44,7 +44,7 @@ path {
     <div style="text-align: center; width:80%; margin-left:10%; border:1px solid black;">
         <input type="button" onclick="highlight('#ff0')" value="highlight">
         <input type="button" onclick="unhighlight(document.body, 'ffff00')" value="unhighlight">
-        <div style="text-align:left;">The results suggest that the extent of consensus has risen significantly. Economists were in strong agreement on about a third of the propositions in the latest wave, compared with around 15% in 2011 and less than 10% in 1990. Respondents were more united on their diagnosis of economic problems. And, strikingly, more of them were convinced of the need for muscular policy. </div></div>
+        <div style="text-align:left;" id="textInBox">The results suggest that the extent of consensus has risen significantly. Economists were in strong agreement on about a third of the propositions in the latest wave, compared with around 15% in 2011 and less than 10% in 1990. Respondents were more united on their diagnosis of economic problems. And, strikingly, more of them were convinced of the need for muscular policy. </div></div>
 </div>
 
 <div>
@@ -233,20 +233,22 @@ function unhighlight(node, colour) {
 //     });
 // }
 
+
+
 /*
     add a new row in the table
 */
 function addRow(){
 
     //check completeness before add reference
-    if($(".red").text().length == 0){
-        alert("Please select some text");
-        return;
-    }
-    if(currentVal == null || currentVal == "null"){
-        alert("Please select a data point");
-        return;
-    }
+    // if($(".red").text().length == 0){
+    //     alert("Please select some text");
+    //     return;
+    // }
+    // if(currentVal == null || currentVal == "null"){
+    //     alert("Please select a data point");
+    //     return;
+    // }
     //create table
     var table = document.getElementById("myTable");
     var row = table.insertRow();
@@ -255,8 +257,14 @@ function addRow(){
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
 
-    cell1.innerHTML = $(".red").text();
-    cell2.innerHTML = currentVal;
+    //grab word list from highlighted text
+    const cont = document.getElementById('textInBox');
+    const res = [...cont.children].map(x => x.innerHTML);
+    // console.log(res)
+
+
+    cell1.innerHTML = res;
+    // cell2.innerHTML = currentVal;
 
     //dropdown menu in cell3
     var values = ["value", "proportion", "difference", "distribution", "trend", "rank", "aggregation", "association", "extreme", "categorization", "outlier"];
@@ -283,7 +291,7 @@ function addRow(){
     svg.selectAll("circle")
         .style('fill', 'black');
     currentVal = 'null';
-    cancel123();
+    // cancel123();
 
 }
 
