@@ -83,14 +83,14 @@ path {
 
 
 <script type="text/javascript">
-function cancel123() {
-    $(".red").remove();
-    document.getElementById('select--highlight--active').innerHTML = "The results suggest that the extent of consensus has risen significantly. Economists were in strong agreement on about a third of the propositions in the latest wave, compared with around 15% in 2011 and less than 10% in 1990. Respondents were more united on their diagnosis of economic problems. And, strikingly, more of them were convinced of the need for muscular policy. ";
-    document.getElementById('redButton').style.visibility='hidden';
-    $('.select--highlight--active').removeClass('testsetting');
-    $('.select--highlight--active').removeClass('unselectText');
+// function cancel123() {
+//     $(".red").remove();
+//     document.getElementById('select--highlight--active').innerHTML = "The results suggest that the extent of consensus has risen significantly. Economists were in strong agreement on about a third of the propositions in the latest wave, compared with around 15% in 2011 and less than 10% in 1990. Respondents were more united on their diagnosis of economic problems. And, strikingly, more of them were convinced of the need for muscular policy. ";
+//     document.getElementById('redButton').style.visibility='hidden';
+//     $('.select--highlight--active').removeClass('testsetting');
+//     $('.select--highlight--active').removeClass('unselectText');
 
-}
+// }
 
 
 /*
@@ -210,6 +210,8 @@ function unhighlight(node, colour) {
         unhighlight(child, colour);
         child = child.nextSibling;
     }
+    document.getElementById('textInBox').innerHTML = "The results suggest that the extent of consensus has risen significantly. Economists were in strong agreement on about a third of the propositions in the latest wave, compared with around 15% in 2011 and less than 10% in 1990. Respondents were more united on their diagnosis of economic problems. And, strikingly, more of them were convinced of the need for muscular policy.";
+
 }
 
 // thisRespondHightlightText(".select--highlight--active");
@@ -240,15 +242,24 @@ function unhighlight(node, colour) {
 */
 function addRow(){
 
+    //grab word list from highlighted text
+    var cont = document.getElementById('textInBox');
+    console.log(cont);
+    var res = [...cont.children].map(x => x.innerHTML);
+    console.log(res);
+    // console.log(res)
+
     //check completeness before add reference
-    // if($(".red").text().length == 0){
-    //     alert("Please select some text");
-    //     return;
-    // }
-    // if(currentVal == null || currentVal == "null"){
-    //     alert("Please select a data point");
-    //     return;
-    // }
+    if(res.length == 0){
+        alert("Please select some text");
+        return;
+    }
+    var emptyArray = [0,0,0,0];
+    // console.log(currentValTF.every((val, index) => val === emptyArray[index]));
+    if(currentValTF.every((val, index) => val === emptyArray[index])){
+        alert("Please select a data point");
+        return;
+    }
     //create table
     var table = document.getElementById("myTable");
     var row = table.insertRow();
@@ -257,14 +268,15 @@ function addRow(){
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
 
-    //grab word list from highlighted text
-    const cont = document.getElementById('textInBox');
-    const res = [...cont.children].map(x => x.innerHTML);
-    // console.log(res)
-
 
     cell1.innerHTML = res;
-    // cell2.innerHTML = currentVal;
+    var cell2Val = [];
+    for(let i=0; i<4;i++){
+        if(currentValTF[i] == 1){
+            cell2Val.push(currentVal[i].toString());
+        }
+    }
+    cell2.innerHTML = cell2Val;
 
     //dropdown menu in cell3
     var values = ["value", "proportion", "difference", "distribution", "trend", "rank", "aggregation", "association", "extreme", "categorization", "outlier"];
@@ -290,9 +302,12 @@ function addRow(){
     cell4.appendChild(btn);
     svg.selectAll("circle")
         .style('fill', 'black');
-    currentVal = 'null';
+    currentVal = ["", "", "", ""];
+    currentValTF = [0, 0, 0, 0];
     // cancel123();
-
+    unhighlight(document.body, 'ffff00');
+    cont = null;
+    res = null;
 }
 
 
@@ -356,7 +371,8 @@ var svg = d3.select("svg")
             .append("svg")
 
 
-var currentVal = null;
+var currentValTF = [0, 0, 0, 0];
+var currentVal = ["", "", "", ""];
 
 svg.selectAll("circle")
    .data(data).enter()
@@ -367,12 +383,17 @@ svg.selectAll("circle")
    .style("fill", "black")
    .attr("r", 4)
    .on('click', function(e, d) {
-        currentVal = e[2];
         if(d3.select(this).style("fill") == d3.rgb(0,0,0)){
+            currentValTF[d] = 1;
+            currentVal[d] = e[2];
             d3.select(this).style("fill", "red");
         }else if(d3.select(this).style("fill") == d3.rgb(255,0,0)){
+            currentValTF[d] = 0;
+            currentVal[d] = "";
             d3.select(this).style("fill", "black");
         }
+        // console.log(currentValTF);
+        // console.log(currentVal);
         // console.log(d3.select(this).style("fill") == d3.rgb(0,0,0));
     //     d3.select(this)
     //         .style('fill', function(d){
