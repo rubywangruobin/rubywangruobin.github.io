@@ -55,7 +55,23 @@ path {
         <div class="svgOverlay"><svg style="width:250px; height:250px;"></svg></div>
 </div>
 </div>
-
+<div style="margin-bottom: 20px;">
+    <h2 style="text-align:left;">Data Type</h2>
+    <select name="dataType" id="dataType">
+        <option value="none" selected disabled hidden>Select an Option</option>
+        <option value="value">Value</option>
+        <option value="proportion">Proportion</option>
+        <option value="difference">Difference</option>
+        <option value="distribution">Distribution</option>
+        <option value="trend">Trend</option>
+        <option value="rank">Rank</option>
+        <option value="aggregation">Aggregation</option>
+        <option value="association">Association</option>
+        <option value="extreme">Extreme</option>
+        <option value="categorization">Categorization</option>
+        <option value="outlier">Outlier</option>
+      </select>
+</div>
 <div style="text-align:center;"><button onclick="addRow()">Add Reference</button></div>
 <div>
     <h2 style="text-align:left;">Data Table</h2>
@@ -244,9 +260,9 @@ function addRow(){
 
     //grab word list from highlighted text
     var cont = document.getElementById('textInBox');
-    console.log(cont);
+    // console.log(cont);
     var res = [...cont.children].map(x => x.innerHTML);
-    console.log(res);
+    // console.log(res);
     // console.log(res)
 
     //check completeness before add reference
@@ -279,19 +295,24 @@ function addRow(){
     cell2.innerHTML = cell2Val;
 
     //dropdown menu in cell3
-    var values = ["value", "proportion", "difference", "distribution", "trend", "rank", "aggregation", "association", "extreme", "categorization", "outlier"];
-    var select =  document.createElement("select");
-    select.name = "category";
-    select.id = "category";
+
+    // var values = ["value", "proportion", "difference", "distribution", "trend", "rank", "aggregation", "association", "extreme", "categorization", "outlier"];
+    // var select =  document.createElement("select");
+    // select.name = "category";
+    // select.id = "category";
  
-    for (const val of values)
-    {
-        var option = document.createElement("option");
-        option.value = val;
-        option.text = val.charAt(0).toUpperCase() + val.slice(1);
-        select.appendChild(option);
-    }
-    cell3.appendChild(select);
+    // for (const val of values)
+    // {
+    //     var option = document.createElement("option");
+    //     option.value = val;
+    //     option.text = val.charAt(0).toUpperCase() + val.slice(1);
+    //     select.appendChild(option);
+    // }
+    // cell3.appendChild(select);
+
+    var dataTypeObj = document.getElementById("dataType");
+    var dataTypeVal = dataTypeObj.value;
+    cell3.innerHTML = dataTypeVal;
 
     //remove button cell4
     var btn = document.createElement("button");
@@ -337,21 +358,50 @@ function removeButton(row){
 
 function sendData(){
 
-    download("hello.txt", document.getElementById('myTable').innerHTML);
+    // download("hello.txt", document.getElementById('myTable').innerHTML);
+    var tableData = tableToJson(document.getElementById('myTable'));
+    console.log(tableData);
 }
 
-function download(filename, text) {
-  var element = document.createElement('a');
-  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-  element.setAttribute('download', filename);
+function tableToJson(table) {
+    var data = [];
 
-  element.style.display = 'none';
-  document.body.appendChild(element);
+    // first row needs to be headers
+    var headers = [];
+    for (var i=0; i<table.rows[0].cells.length; i++) {
+        headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');
+    }
 
-  element.click();
+    // go through cells
+    for (var i=1; i<table.rows.length; i++) {
 
-  document.body.removeChild(element);
+        var tableRow = table.rows[i];
+        var rowData = {};
+
+        for (var j=0; j<tableRow.cells.length; j++) {
+
+            rowData[ headers[j] ] = tableRow.cells[j].innerHTML;
+
+        }
+
+        data.push(rowData);
+    }       
+
+    return data;
 }
+
+// function download(filename, text) {
+//   var element = document.createElement('a');
+//   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+//   element.setAttribute('download', filename);
+
+//   element.style.display = 'none';
+//   document.body.appendChild(element);
+
+//   element.click();
+
+//   document.body.removeChild(element);
+// }
 
 
 
