@@ -45,6 +45,7 @@ path {
     <div style="text-align: center; width:80%; margin-left:10%; border:1px solid black;">
         <input type="button" onclick="highlight('#ff0')" value="highlight">
         <input type="button" onclick="unhighlight(document.body, 'ffff00')" value="unhighlight">
+        <!-- todo -->
         <div style="text-align:left;" id="textInBox">The results suggest that the extent of consensus has risen significantly. Economists were in strong agreement on about a third of the propositions in the latest wave, compared with around 15% in 2011 and less than 10% in 1990. Respondents were more united on their diagnosis of economic problems. And, strikingly, more of them were convinced of the need for muscular policy. </div></div>
 </div>
 
@@ -362,6 +363,7 @@ function sendData(){
     // download("hello.txt", document.getElementById('myTable').innerHTML);
     var tableData = tableToJson(document.getElementById('myTable'));
     console.log(tableData);
+    processFile(tableData);
 }
 
 function tableToJson(table) {
@@ -394,52 +396,38 @@ function tableToJson(table) {
 
 AWS.config.update({
   region: "us-east-2",
-  endpoint: 'http://localhost:8000',
+  endpoint: 'dynamodb.us-east-2.amazonaws.com',
   // accessKeyId default can be used while using the downloadable version of DynamoDB. 
   // For security reasons, do not store AWS Credentials in your files. Use Amazon Cognito instead.
-  accessKeyId: "AKIARAUPC2F5LNF3BBPP",
+  accessKeyId: "AKIARAUPC2F5NO5BG65H",
   // secretAccessKey default can be used while using the downloadable version of DynamoDB. 
   // For security reasons, do not store AWS Credentials in your files. Use Amazon Cognito instead.
-  secretAccessKey: "fakeSecretAccessKey"
+  secretAccessKey: "vQ2DyNiL2+kht5yhr9CEIFCNxzq0+4wUuvdxCUML"
 });
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
 function processFile(evt) {
-    document.getElementById('textarea').innerHTML = "";
-    document.getElementById('textarea').innerHTML += "Importing movies into DynamoDB. Please wait..." + "\n";
-    var file = evt.target.files[0];
-    if (file) {
-        var r = new FileReader();
-        r.onload = function(e) {
-            var contents = e.target.result;
-            var allMovies = JSON.parse(contents);
-
-            allMovies.forEach(function (movie) {
-                document.getElementById('textarea').innerHTML += "Processing: " + movie.title + "\n";
-                var params = {
-                    TableName: "Movies",
-                    Item: {
-                        "year": movie.year,
-                        "title": movie.title,
-                        "info": movie.info
-                    }
-                };
-                docClient.put(params, function (err, data) {
-                    if (err) {
-                        document.getElementById('textarea').innerHTML += "Unable to add movie: " + count + movie.title + "\n";
-                        document.getElementById('textarea').innerHTML += "Error JSON: " + JSON.stringify(err) + "\n";
-                    } else {
-                        document.getElementById('textarea').innerHTML += "PutItem succeeded: " + movie.title + "\n";
-                        textarea.scrollTop = textarea.scrollHeight;
-                    }
-                });
-            });
+    console.log(evt);
+    console.log(evt[0].datatype);
+    var params = {
+        TableName: "userstudy",
+        Item: {
+            "pid": 1,
+            "text": evt[0].text,
+            "datapoint": evt[0].datapoint,
+            "datatype": evt[0].datatype
+        }
     };
-        r.readAsText(file);
-    } else {
-        alert("Could not read movie data file");
-    }
+    docClient.put(params, function (err, data) {
+        if (err) {
+            alert("Unable to add movie");
+            alert("Error JSON: ");
+        } else {
+            alert("PutItem succeeded: ");
+            textarea.scrollTop = textarea.scrollHeight;
+        }
+    });
 }
 
 // function download(filename, text) {
@@ -461,6 +449,7 @@ function processFile(evt) {
     Data
 */
 
+// todo 
 var data = [
   [18, 185, "9%"], [75, 162, "14%"], [136, 162, "14%"], [193, 71, "32%"]]
 
