@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Line Chart</title>
+<style>
+    body{
+        margin: 20px;
+    }
+    .container{
+        position: relative;
+    }
+    .text{
+        position: absolute;
+    }
+    #title{
+        font-size: 1.2em;
+    }
+    .year{
+        font-size: 1.5em;
+    }
+    #xaxis{
+        margin-top: 44em;
+        padding: 0;
+        font-family: EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+    }
+    li{
+        display: inline-block;
+        font-size: 1.8em;
+    }
+    #year75, #year2000{
+        margin-left: 2em;
+    }
+    #year80, #year85{
+        margin-left: 2.5em;
+    }
+    #year90, #year95, #year10, #year15{
+        margin-left: 2.6em;
+    }
+    #year05{
+        margin-left: 2.2em;
+    }
+    #year22{
+        margin-left: 4em;
+    }
+    #yaxis{
+        margin-left: 42.5em;
+        font-size: 1.8em;
+        margin-top: 5.5em;
+        text-align: right;
+        font-family: EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+    }
+    #y150, #y100, #y50, #y0{
+        margin-top: 3.1em;
+    }
+    .label{
+        margin-top: 11.2em;
+    }
+    #marks{
+        color: grey;
+        margin-left: 4.5em;
+    }
+</style>
+</head>
+<body>
+
+<div class="container" id="container">
+    <div class="text" id="text">
+        <h2>You ain't seen nothing yet</h2>
+        <p id="title">Oil price, West Texas Intermediate, $ per barrel</p>
+        <p id="title">March 2022 prices*</p>
+    </div>
+    <div class="text" id="text">
+        <ul id="xaxis">
+            <li id="year70">1970</li>
+            <li id="year75">75</li>
+            <li id="year80">80</li>
+            <li id="year85">85</li>
+            <li id="year90">90</li>
+            <li id="year95">95</li>
+            <li id="year2000">2000</li>
+            <li id="year05">05</li>
+            <li id="year10">10</li>
+            <li id="year15">15</li>
+            <li id="year22">22</li>
+        </ul>
+    </div>
+    <div class="text" id="text">
+        <div id="yaxis">
+            <p id="y200">200</p>
+            <p id="y150">150</p>
+            <p id="y100">100</p>
+            <p id="y50">50</p>
+            <p id="y0">0</p>
+        </div>
+    </div>
+    <div class="text label" id="text">
+        <ul id="marks">
+            <li id="YKwar" style="vertical-align: top;">
+                <p style="margin:0;">Yom</p>
+                <p style="margin:0;">Kippur</p> 
+                <p style="margin:0;">war</p>
+            </li>
+            <li id="Iran" style="vertical-align: top; margin-left: 1em;">
+                <p style="margin:0;">Iranian revolution</p>
+            </li>
+            <li id="Gwar" style="vertical-align: top; margin-left: 1.6em;">
+                <p style="margin:0;">Gulf war</p>
+            </li>
+            <li id="Iraq" style="vertical-align: top; margin-left: 2.3em;">
+                <p style="margin:0;">Iraq war</p>
+            </li>
+            <li id="Arab" style="vertical-align: top; margin-left: 1.1em;">
+                <p style="margin:0;">Arab Spring</p>
+            </li>
+            <li id="Russia" style="vertical-align: top; margin-left: 2.4em;">
+                <p style="margin:0;">Russia invades</p> 
+                <p style="margin:0;">Ukraine</p>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="image" id="image">
+        <img src="LineChart.png">
+    </div>
+</div>
+
+</body>
+</html>
