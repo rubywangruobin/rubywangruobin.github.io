@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bar Chart</title>
+<style>
+    body{
+        margin: 20px;
+    }
+    .container{
+        position: relative;
+    }
+    .text{
+        position: absolute;
+    }
+    #title{
+        font-size: 1.2em;
+    }
+    .year{
+        font-size: 1.5em;
+    }
+    #xaxis{
+        margin-top: 36em;
+        padding: 0;
+        font-family: EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+    }
+    li{
+        display: inline-block;
+        font-size: 1.8em;
+    }
+    #year75, #year2000{
+        margin-left: 2.2em;
+    }
+    #year80, #year85{
+        margin-left: 2.8em;
+    }
+    #year90, #year95, #year10, #year15{
+        margin-left: 2.7em;
+    }
+    #year05{
+        margin-left: 2.4em;
+    }
+    #year22{
+        margin-left: 4em;
+    }
+    #yaxis{
+        margin-left: 42.5em;
+        font-size: 1.8em;
+        margin-top: 4.5em;
+        text-align: right;
+        font-family: EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
+    }
+    #y150, #y100, #y50, #y0{
+        margin-top: 2.3em;
+    }
+    .label{
+        margin-top: 11.2em;
+    }
+    #marks{
+        color: grey;
+        padding: 0;
+        margin-left: 2em;
+    }
+</style>
+</head>
+<body>
+
+<div class="container" id="container">
+    <div class="text" id="text" style="margin-top: 1em;">
+        <h2>The Mad Hatter's NFT party</h2>
+        <p id="title">NFT marketplaces, trading volumes, 2021, $m</p>
+    </div>
+    <div class="text" id="text" style="margin-left: 8em;">
+        <ul id="xaxis">
+            <li id="year70">Jan</li>
+            <li id="year75" style="margin-left: 4.5em;">Feb</li>
+            <li id="year80" style="margin-left: 4.5em;">Mar</li>
+            <li id="year85" style="margin-left: 4.5em;">Apr</li>
+            <li id="year90" style="margin-left: 4.5em;">May</li>
+            <li id="year95" style="margin-left: 4.5em;">Jun</li>
+        </ul>
+    </div>
+    <div class="text" id="text">
+        <div id="yaxis">
+            <p id="y200">200</p>
+            <p id="y150">150</p>
+            <p id="y100">100</p>
+            <p id="y50">50</p>
+            <p id="y0">0</p>
+        </div>
+    </div>
+    <div class="text label" id="text">
+        <ul id="marks">
+            <li id="YKwar" style="vertical-align: top;">
+                Art
+            </li>
+            <li id="Iran" style="vertical-align: top; margin-left: 2em;">
+                General
+            </li>
+        </ul>
+    </div>
+    
+    <div class="image" id="image">
+        <img src="BarChart.png">
+    </div>
+</div>
+
+</body>
+</html>
