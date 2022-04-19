@@ -13,19 +13,18 @@
         position: absolute;
     }
     #title{
-        font-size: 1.2em;
+        font-size: 1em;
     }
     .year{
-        font-size: 1.5em;
+        font-size: 1em;
     }
     #xaxis{
-        margin-top: 36em;
         padding: 0;
         font-family: EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
     }
     li{
         display: inline-block;
-        font-size: 1.8em;
+        font-size: 1em;
     }
     #year75, #year2000{
         margin-left: 2.2em;
@@ -43,43 +42,43 @@
         margin-left: 4em;
     }
     #yaxis{
-        margin-left: 42.5em;
-        font-size: 1.8em;
-        margin-top: 4.5em;
+        margin-left: 36em;
+        font-size: 1em;
         text-align: right;
         font-family: EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
     }
     #y150, #y100, #y50, #y0{
-        margin-top: 2.3em;
+        margin-top: 1.8em;
     }
     .label{
-        margin-top: 11.2em;
     }
     #marks{
         color: grey;
         padding: 0;
-        margin-left: 2em;
+        margin-left: 1em;
     }
 </style>
 </head>
 <body>
 
-<div class="container" id="container">
-    <div class="text" id="text" style="margin-top: 1em;">
-        <h2>The Mad Hatter's NFT party</h2>
-        <p id="title">NFT marketplaces, trading volumes, 2021, $m</p>
+<div class="container" id="container" style=" width:600px; height:auto; margin-left: 50%; transform: translateX(-50%);">
+    
+    <img src="BarChart.png" width="600px" height="auto" style="margin-left: 50%; transform: translateX(-50%);">
+    <div class="text" id="text" style="top: 0.2em; ">
+        <h4 style="margin-top: 0.5em; margin-bottom: 0.5em;">The Mad Hatter's NFT party</h4>
+        <p id="title" style="margin-top: 0.5em; margin-bottom: 0.5em;">NFT marketplaces, trading volumes, 2021, $m</p>
     </div>
-    <div class="text" id="text" style="margin-left: 8em;">
+    <div class="text" id="text" style="margin-left: 3.8em; top: 16.5em;">
         <ul id="xaxis">
             <li id="year70">Jan</li>
-            <li id="year75" style="margin-left: 4.5em;">Feb</li>
-            <li id="year80" style="margin-left: 4.5em;">Mar</li>
-            <li id="year85" style="margin-left: 4.5em;">Apr</li>
-            <li id="year90" style="margin-left: 4.5em;">May</li>
-            <li id="year95" style="margin-left: 4.5em;">Jun</li>
+            <li id="year75" style="margin-left: 3.5em;">Feb</li>
+            <li id="year80" style="margin-left: 3.3em;">Mar</li>
+            <li id="year85" style="margin-left: 3.3em;">Apr</li>
+            <li id="year90" style="margin-left: 3.3em;">May</li>
+            <li id="year95" style="margin-left: 3.3em;">Jun</li>
         </ul>
     </div>
-    <div class="text" id="text">
+    <div class="text" id="text" style="top: 2.5em;">
         <div id="yaxis">
             <p id="y200">200</p>
             <p id="y150">150</p>
@@ -88,20 +87,17 @@
             <p id="y0">0</p>
         </div>
     </div>
-    <div class="text label" id="text">
+    <div class="text label" id="text" style="top: 4.5em;">
         <ul id="marks">
             <li id="YKwar" style="vertical-align: top;">
                 Art
             </li>
-            <li id="Iran" style="vertical-align: top; margin-left: 2em;">
+            <li id="Iran" style="vertical-align: top; margin-left: 1.4em;">
                 General
             </li>
         </ul>
     </div>
     
-    <div class="image" id="image">
-        <img src="BarChart.png">
-    </div>
 </div>
 
 </body>

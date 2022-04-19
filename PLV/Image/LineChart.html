@@ -13,63 +13,62 @@
         position: absolute;
     }
     #title{
-        font-size: 1.2em;
+        font-size: 1em;
     }
     .year{
-        font-size: 1.5em;
+        font-size: 1em;
     }
     #xaxis{
-        margin-top: 44em;
         padding: 0;
         font-family: EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
     }
     li{
         display: inline-block;
-        font-size: 1.8em;
+        font-size: 1em;
     }
     #year75, #year2000{
-        margin-left: 2em;
+        margin-left: 1em;
     }
     #year80, #year85{
-        margin-left: 2.5em;
+        margin-left: 2em;
     }
     #year90, #year95, #year10, #year15{
-        margin-left: 2.6em;
+        margin-left: 1.8em;
     }
     #year05{
-        margin-left: 2.2em;
+        margin-left: 2em;
     }
     #year22{
-        margin-left: 4em;
+        margin-left: 3em;
     }
     #yaxis{
-        margin-left: 42.5em;
-        font-size: 1.8em;
-        margin-top: 5.5em;
+        margin-left: 36em;
+        font-size: 1em;
         text-align: right;
         font-family: EconSansCnd,EconSansCndSec,Arial Narrow,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,'sans-serif';
     }
     #y150, #y100, #y50, #y0{
-        margin-top: 3.1em;
+        margin-top: 2.5em;
     }
     .label{
-        margin-top: 11.2em;
     }
     #marks{
         color: grey;
-        margin-left: 4.5em;
+        margin-left: 1em;
+        font-size: 0.9em;
     }
 </style>
 </head>
 <body>
 
-<div class="container" id="container">
-    <div class="text" id="text">
-        <h2>You ain't seen nothing yet</h2>
-        <p id="title">Oil price, West Texas Intermediate, $ per barrel</p>
-        <p id="title">March 2022 prices*</p>
+<div class="container" id="container" style=" width:600px; height:auto; margin-left: 50%; transform: translateX(-50%);">
+    <img src="LineChart.png" width="600px" height="auto" style="margin-left: 50%; transform: translateX(-50%);">
+    <div class="text" id="text" style="top: 0.2em;">
+        <h4 style="margin-top: 0.5em; margin-bottom: 0.5em;">You ain't seen nothing yet</h4>
+        <p id="title" style="margin-top: 0.5em; margin-bottom: 0.5em;">Oil price, West Texas Intermediate, $ per barrel</p>
+        <p id="title" style="margin-top: 0.5em; margin-bottom: 0.5em;">March 2022 prices*</p>
     </div>
-    <div class="text" id="text">
+    <div class="text" id="text" style="top: 20em;">
         <ul id="xaxis">
             <li id="year70">1970</li>
             <li id="year75">75</li>
@@ -84,7 +83,7 @@
             <li id="year22">22</li>
         </ul>
     </div>
-    <div class="text" id="text">
+    <div class="text" id="text" style="top: 3.5em;">
         <div id="yaxis">
             <p id="y200">200</p>
             <p id="y150">150</p>
@@ -93,35 +92,33 @@
             <p id="y0">0</p>
         </div>
     </div>
-    <div class="text label" id="text">
+    <div class="text label" id="text" style="top: 5em;">
         <ul id="marks">
             <li id="YKwar" style="vertical-align: top;">
                 <p style="margin:0;">Yom</p>
                 <p style="margin:0;">Kippur</p> 
                 <p style="margin:0;">war</p>
             </li>
-            <li id="Iran" style="vertical-align: top; margin-left: 1em;">
+            <li id="Iran" style="vertical-align: top; margin-left: 0.7em;">
                 <p style="margin:0;">Iranian revolution</p>
             </li>
-            <li id="Gwar" style="vertical-align: top; margin-left: 1.6em;">
+            <li id="Gwar" style="vertical-align: top; margin-left: 1em;">
                 <p style="margin:0;">Gulf war</p>
             </li>
-            <li id="Iraq" style="vertical-align: top; margin-left: 2.3em;">
+            <li id="Iraq" style="vertical-align: top; margin-left: 1.3em;">
                 <p style="margin:0;">Iraq war</p>
             </li>
-            <li id="Arab" style="vertical-align: top; margin-left: 1.1em;">
+            <li id="Arab" style="vertical-align: top; margin-left: 0.6em;">
                 <p style="margin:0;">Arab Spring</p>
             </li>
-            <li id="Russia" style="vertical-align: top; margin-left: 2.4em;">
+            <li id="Russia" style="vertical-align: top; margin-left: 1.8em;">
                 <p style="margin:0;">Russia invades</p> 
                 <p style="margin:0;">Ukraine</p>
             </li>
         </ul>
     </div>
     
-    <div class="image" id="image">
-        <img src="LineChart.png">
-    </div>
+    
 </div>
 
 </body>
